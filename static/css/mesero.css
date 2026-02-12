@@ -1,0 +1,46 @@
+.header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px 8px 0 0;
+      font-weight: bold;
+    }
+    .mesa {
+      width: 130px;
+      height: 100px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: black;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 8px;
+      transition: 0.2s;
+    }
+    .mesa:hover { transform: scale(1.05); }
+
+    /* Colores según estado */
+    .disponible { background-color: #66ff66; }
+    .ocupado { background-color: #ff6666; }
+    .precuenta { background-color: #66b3ff; color: white; }
+    .pagando { background-color: #ffeb66; }
+
+    .leyenda {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+      align-items: center;
+      justify-content: center;
+    }
+    .leyenda div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .cuadro {
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+    }
+    

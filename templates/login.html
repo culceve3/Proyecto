@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión - El Choko</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+  <div class="login-card">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo El Choko"> 
+    <form action="/login" method="POST">
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+        <input type="text" class="form-control" name="usuario" placeholder="Usuario" required>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+        <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+      </div>
+      <div class="button-container">
+        <button type="submit" class="btn-login">Iniciar Sesión</button>
+      </div>
+      {% if error %}
+        <p class="text-danger mt-2">{{ error }}</p>
+      {% endif %}
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

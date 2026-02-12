@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mesero</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mesero.css') }}">
+</head>
+<body>
+  <div class="header d-flex justify-content-between align-items-center p-3" style="background-color:#F5CF27;">
+    <h2 class="fw-bold text-dark">Panel del Mesero</h2>
+    <div class="d-flex align-items-center">
+      <span class="me-3 text-dark">
+        <i class="bi bi-alarm"></i> {{ current_time }}
+      </span>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+  <form action="{{ url_for('agregar_orden') }}" method="POST" class="row g-3 mb-4">
+      <div class="col-md-2">
+        
+      </div>
+      <div class="col-md-2">
+        <input type="text" name="mesa" class="form-control" placeholder="ID Mesa" required>
+      </div>
+      <div class="col-md-3">
+  <select name="descripcion" class="form-select" required>
+    <option value="">Selecciona un platillo</option>
+    {% for m in menu %}
+      <option value="{{ m['nombre_platillo'] }}">
+        {{ m['nombre_platillo'] }}
+      </option>
+    {% endfor %}
+  </select>
+</div>
+      <div class="col-md-2">
+        <input type="time" name="hora" class="form-control" required>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Agregar</button>
+      </div>
+    </form>
+    </div>
+
+  <div class="container mt-4">
+    <h3 class="fw-bold mb-4">Órdenes registradas</h3>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover shadow-sm text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>ID Orden</th>
+            <th>Mesa</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Hora</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for o in ordenes %}
+          <tr>
+            <td>{{ o['id_orden'] }}</td>
+            <td>{{ o['mesa'] }}</td>
+            <td>{{ o['descripcion'] }}</td>
+            <td>{{ o['estado'] }}</td>
+            <td>{{ o['hora'] }}</td>
+            <td class="text-center">
+              {% if o['estado'] == 'terminado' %}
+                <a href="{{ url_for('cuenta_pedido', mesa=o['mesa']) }}" class="btn btn-outline-info">
+                  Ver cuenta
+                </a>
+              {% else %}
+                <span class="text-muted">---</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+    .ventana {
+      background-color: white;
+      border: 2px solid #007bff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .barra-titulo {
+      background-color: #007bff;
+      color: white;
+      padding: 5px 10px;
+      font-weight: bold;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .tabla-orden th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-menu {
+      width: 150px;
+      text-align: left;
+      margin-bottom: 5px;
+    }
+
+    .btn-item {
+      width: 180px;
+      text-align: left;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+      transition: 0.2s;
+    }
+    .btn-item:hover {
+      background-color: #e6f0ff;
+      border-color: #007bff;
+    }
+
+    .btn-cancelar {
+      background-color: #ff6666;
+      color: white;
+      border: none;
+    }
+    .btn-cancelar:hover {
+      background-color: #e60000;
+    }
+
+    .total {
+      text-align: right;
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-top: 5px;
+    }

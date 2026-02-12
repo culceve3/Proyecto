@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel Cocinero</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cocinero.css') }}">
+</head>
+<body>
+  <div class="header">
+    <h2>Cocinero</h2>
+    <div>
+      <i class="bi bi-arrow-repeat fs-4 me-3"></i>
+      <i class="bi bi-gear fs-4"></i>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row g-4 justify-content-center">
+      {% for o in ordenes %}
+      <div class="col-md-3">
+        <div class="card p-3">
+          <h5 class="fw-bold">Mesa {{ o['mesa'] }}</h5>
+          <p class="mb-1"><strong>Orden:</strong> {{ o['id_orden'] }}</p>
+          <p class="mb-1"><strong>Nota:</strong></p>
+          <p>{{ o['descripcion'] }}</p>
+
+          {% if o['estado'] == 'pendiente' %}
+            <form action="{{ url_for('iniciar_pedido', id=o['id_orden']) }}" method="POST">
+              <button type="submit" class="btn btn-green w-100 mt-2">Iniciar pedido</button>
+            </form>
+          {% elif o['estado'] == 'en proceso' %}
+            <form action="{{ url_for('terminar_pedido', id=o['id_orden']) }}" method="POST">
+              <button type="submit" class="btn btn-red w-100 mt-2">Terminar pedido</button>
+            </form>
+          {% else %}
+            <button class="btn btn-secondary w-100 mt-2" disabled>Pedido terminado</button>
+          {% endif %}
+
+          <div class="time mt-2">
+            <i class="bi bi-alarm"></i> {{ o['hora'] }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

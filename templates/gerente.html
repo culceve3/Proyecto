@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel del Gerente</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+  <div class="header d-flex justify-content-between align-items-center p-3" style="background-color:#F5CF27;">
+    <h2 class="fw-bold text-dark">Panel del Gerente</h2>
+    <div class="d-flex align-items-center">
+      <span class="me-3 text-dark"><i class="bi bi-alarm"></i> {{ current_time }}</span>
+      <span class="fw-bold text-dark"><i class="bi bi-cash-stack"></i> Ingresos: ${{ ingresos }}</span>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <h3 class="fw-bold mb-3">Órdenes</h3>
+    <table class="table table-striped table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Mesa</th>
+          <th>Platillo</th>
+          <th>Estado</th>
+          <th>Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for o in ordenes %}
+        <tr>
+          <td>{{ o['id_orden'] }}</td>
+          <td>{{ o['mesa'] }}</td>
+          <td>{{ o['descripcion'] }}</td>
+          <td>{{ o['estado'] }}</td>
+          <td>{{ o['hora'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3 class="fw-bold mb-3">Menú</h3>
+    <table class="table table-striped table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Platillo</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in menu %}
+        <tr>
+          <td>{{ m['id_menu'] }}</td>
+          <td>{{ m['nombre_platillo'] }}</td>
+          <td>{{ m['categoria'] }}</td>
+          <td>${{ m['precio'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3 class="fw-bold mb-3">Empleados</h3>
+    <table class="table table-striped table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Puesto</th>
+          <th>Salario</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for e in empleados %}
+        <tr>
+          <td>{{ e['id_empleado'] }}</td>
+          <td>{{ e['nombre_empleado'] }}</td>
+          <td>{{ e['puesto'] }}</td>
+          <td>${{ e['salario'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
